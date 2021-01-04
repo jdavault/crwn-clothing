@@ -1,8 +1,11 @@
 import React from 'react'
 import './header.styles.scss';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/crown.svg'
+
 import { auth } from '../../firebase/firebase.utils'
+
+import { connect } from 'react-redux';
+import { ReactComponent as Logo } from '../../assets/crown.svg'
 
 const Header = ( { currentUser } ) => (
     <div className='header'>
@@ -23,13 +26,10 @@ const Header = ( { currentUser } ) => (
             }
         </div>
     </div>
-)
+);
 
-export default Header
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
 
-//Old - https://www.airbnb.com/hosting/reservations/details/HMXY3NYYY4
-//1/2 to 1/30
-
-//New -  https://www.airbnb.com/hosting/reservations/details/HM5EMPCMWA 
-//1/14 to 2/12
-
+export default connect(mapStateToProps)(Header);
